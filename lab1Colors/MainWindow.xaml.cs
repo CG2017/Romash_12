@@ -74,6 +74,35 @@ namespace lab1Colors
                 sliderHue.Value = hue;
                 sliderSaturation.Value = satur;
                 sliderValue.Value = value;
+
+
+                double var_R = sliderRed.Value / 255;        //R from 0 to 255
+                double var_G = sliderGreen.Value / 255;        //G from 0 to 255
+                double var_B = sliderBlue.Value / 255;        //B from 0 to 255
+
+                if (var_R > 0.04045)
+                    var_R = Math.Pow((var_R + 0.055)/1.055, 2.4);
+                else var_R = var_R/12.92;
+                if (var_G > 0.04045)
+                    var_G = Math.Pow((var_G + 0.055)/1.055, 2.4);
+                else var_G = var_G/12.92;
+                if (var_B > 0.04045)
+                    var_B = Math.Pow((var_B + 0.055)/1.055, 2.4);
+                else var_B = var_B/12.92;
+
+                var_R *= 100;
+                var_G *= 100;
+                var_B *= 100;
+
+                //Observer. = 2°, Illuminant = D65
+                double X = var_R*0.4124 + var_G*0.3576 + var_B*0.1805;
+                double Y = var_R*0.2126 + var_G*0.7152 + var_B*0.0722;
+                double Z = var_R*0.0193 + var_G*0.1192 + var_B*0.9505;
+
+                sliderLightness.Value = 116*FuncLab(Y/100) - 16;
+                sliderA.Value = 500*(FuncLab(X/95.047) - FuncLab(Y/100));
+                sliderB.Value = 200 * (FuncLab(X / 95.047) - FuncLab(Z / 108.883));
+
                 #endregion
             }
         }
@@ -116,6 +145,33 @@ namespace lab1Colors
                 sliderHue.Value = hue;
                 sliderSaturation.Value = satur;
                 sliderValue.Value = value;
+
+                double var_R = sliderRed.Value / 255;        //R from 0 to 255
+                double var_G = sliderGreen.Value / 255;        //G from 0 to 255
+                double var_B = sliderBlue.Value / 255;        //B from 0 to 255
+
+                if (var_R > 0.04045)
+                    var_R = Math.Pow((var_R + 0.055) / 1.055, 2.4);
+                else var_R = var_R / 12.92;
+                if (var_G > 0.04045)
+                    var_G = Math.Pow((var_G + 0.055) / 1.055, 2.4);
+                else var_G = var_G / 12.92;
+                if (var_B > 0.04045)
+                    var_B = Math.Pow((var_B + 0.055) / 1.055, 2.4);
+                else var_B = var_B / 12.92;
+
+                var_R *= 100;
+                var_G *= 100;
+                var_B *= 100;
+
+                //Observer. = 2°, Illuminant = D65
+                double X = var_R * 0.4124 + var_G * 0.3576 + var_B * 0.1805;
+                double Y = var_R * 0.2126 + var_G * 0.7152 + var_B * 0.0722;
+                double Z = var_R * 0.0193 + var_G * 0.1192 + var_B * 0.9505;
+
+                sliderLightness.Value = 116 * FuncLab(Y / 100) - 16;
+                sliderA.Value = 500 * (FuncLab(X / 95.047) - FuncLab(Y / 100));
+                sliderB.Value = 200 * (FuncLab(X / 95.047) - FuncLab(Z / 108.883));
                 #endregion
                 Color color = Color.FromRgb((byte) red, (byte) green, (byte) blue);
                 #region Writing in texbox
@@ -190,6 +246,33 @@ namespace lab1Colors
                 sliderCyan.Value = cyan;
                 sliderMagenta.Value = magenta;
                 sliderYellow.Value = yellow;
+
+                double var_R = sliderRed.Value / 255;        //R from 0 to 255
+                double var_G = sliderGreen.Value / 255;        //G from 0 to 255
+                double var_B = sliderBlue.Value / 255;        //B from 0 to 255
+
+                if (var_R > 0.04045)
+                    var_R = Math.Pow((var_R + 0.055) / 1.055, 2.4);
+                else var_R = var_R / 12.92;
+                if (var_G > 0.04045)
+                    var_G = Math.Pow((var_G + 0.055) / 1.055, 2.4);
+                else var_G = var_G / 12.92;
+                if (var_B > 0.04045)
+                    var_B = Math.Pow((var_B + 0.055) / 1.055, 2.4);
+                else var_B = var_B / 12.92;
+
+                var_R *= 100;
+                var_G *= 100;
+                var_B *= 100;
+
+                //Observer. = 2°, Illuminant = D65
+                double X = var_R * 0.4124 + var_G * 0.3576 + var_B * 0.1805;
+                double Y = var_R * 0.2126 + var_G * 0.7152 + var_B * 0.0722;
+                double Z = var_R * 0.0193 + var_G * 0.1192 + var_B * 0.9505;
+
+                sliderLightness.Value = 116 * FuncLab(Y / 100) - 16;
+                sliderA.Value = 500 * (FuncLab(X / 95.047) - FuncLab(Y / 100));
+                sliderB.Value = 200 * (FuncLab(X / 95.047) - FuncLab(Z / 108.883));
                 #endregion
                 Color color = Color.FromRgb((byte) ((redS + m)*255), (byte) ((greenS + m)*255), (byte) ((blueS + m)*255));
                 #region Writing in texbox
@@ -233,6 +316,8 @@ namespace lab1Colors
             }
         }
 
+        public double FuncLab(double t) =>  t > Math.Pow(6.0/29, 3)? Math.Pow(t, 1.0/3) : t/(108.0/841) + 4.0/29; 
+        
         private void slider_MouseEnter(object sender, MouseEventArgs e)
         {
             rgb = 1;
