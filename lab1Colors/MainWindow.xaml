@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab1Colors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Colors" Height="497.436" Width="907.051">
     <Grid>
-        
+        <Slider x:Name="sliderRed" HorizontalAlignment="Left" Margin="51,135,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="255" ValueChanged="slider_ValueChanged" MouseEnter="slider_MouseEnter" MouseLeave="slider_MouseLeave"/>
+        <Slider x:Name="sliderGreen" HorizontalAlignment="Left" Margin="51,157,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="255" ValueChanged="slider_ValueChanged" MouseEnter="slider_MouseEnter" MouseLeave="slider_MouseLeave"/>
+        <Slider x:Name="sliderBlue" HorizontalAlignment="Left" Margin="51,176,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="255" ValueChanged="slider_ValueChanged" MouseEnter="slider_MouseEnter" MouseLeave="slider_MouseLeave"/>
+        <Slider x:Name="sliderCyan" HorizontalAlignment="Left" Margin="51,369,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="1" SmallChange="0.01" LargeChange="0.01" ValueChanged="sliderCMYK_ValueChanged" MouseEnter="sliderCMY_MouseEnter" MouseLeave="sliderCMY_MouseLeave"/>
+        <Slider x:Name="sliderMagenta" HorizontalAlignment="Left" Margin="51,388,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="1" SmallChange="0.01" LargeChange="0.01" ValueChanged="sliderCMYK_ValueChanged" MouseEnter="sliderCMY_MouseEnter" MouseLeave="sliderCMY_MouseLeave"/>
+        <Slider x:Name="sliderYellow" HorizontalAlignment="Left" Margin="51,407,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="1" SmallChange="0.01" LargeChange="0.01" ValueChanged="sliderCMYK_ValueChanged" MouseEnter="sliderCMY_MouseEnter" MouseLeave="sliderCMY_MouseLeave"/>
+        <Slider x:Name="sliderHue" HorizontalAlignment="Left" Margin="609,135,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="360" ValueChanged="sliderHSV_ValueChanged" MouseEnter="sliderHSV_MouseEnter" MouseLeave="sliderHSV_MouseLeave"/>
+        <Slider x:Name="sliderSaturation" HorizontalAlignment="Left" Margin="609,154,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="1" ValueChanged="sliderHSV_ValueChanged" MouseEnter="sliderHSV_MouseEnter" MouseLeave="sliderHSV_MouseLeave"/>
+        <Slider x:Name="sliderValue" HorizontalAlignment="Left" Margin="609,173,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="1" ValueChanged="sliderHSV_ValueChanged" MouseEnter="sliderHSV_MouseEnter" MouseLeave="sliderHSV_MouseLeave"/>
+        <Slider x:Name="slider_Copy8" HorizontalAlignment="Left" Margin="609,369,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="255"/>
+        <Slider x:Name="slider_Copy9" HorizontalAlignment="Left" Margin="609,388,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="255"/>
+        <Slider x:Name="slider_Copy10" HorizontalAlignment="Left" Margin="609,407,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="255"/>
+        <Label x:Name="label" Content="R" HorizontalAlignment="Left" Margin="28,131,0,0" VerticalAlignment="Top" RenderTransformOrigin="13.156,9.463"/>
+        <Label x:Name="label_Copy" Content="G" HorizontalAlignment="Left" Margin="28,151,0,0" VerticalAlignment="Top" RenderTransformOrigin="13.156,9.463"/>
+        <Label x:Name="label_Copy1" Content="B" HorizontalAlignment="Left" Margin="28,172,0,0" VerticalAlignment="Top" RenderTransformOrigin="13.156,9.463"/>
+        <Slider x:Name="sliderKey" HorizontalAlignment="Left" Margin="51,426,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="1" SmallChange="0.01" LargeChange="0.01" ValueChanged="sliderCMYK_ValueChanged" IsEnabled="False"/>
+        <Label x:Name="label_Copy2" Content="C&#xD;&#xA;" HorizontalAlignment="Left" Margin="28,369,0,0" VerticalAlignment="Top" RenderTransformOrigin="13.156,9.463"/>
+        <Label x:Name="label_Copy3" Content="M&#xD;&#xA;" HorizontalAlignment="Left" Margin="28,388,0,0" VerticalAlignment="Top" RenderTransformOrigin="13.156,9.463"/>
+        <Label x:Name="label_Copy4" Content="Y" HorizontalAlignment="Left" Margin="28,407,0,0" VerticalAlignment="Top" RenderTransformOrigin="13.156,9.463"/>
+        <Label x:Name="label_Copy5" Content="K" HorizontalAlignment="Left" Margin="28,422,0,0" VerticalAlignment="Top" RenderTransformOrigin="13.156,9.463"/>
+        <Label x:Name="label_Copy6" Content="H" HorizontalAlignment="Left" Margin="586,131,0,0" VerticalAlignment="Top" RenderTransformOrigin="13.156,9.463"/>
+        <Label x:Name="label_Copy7" Content="S" HorizontalAlignment="Left" Margin="586,150,0,0" VerticalAlignment="Top" RenderTransformOrigin="13.156,9.463"/>
+        <Label x:Name="label_Copy8" Content="V" HorizontalAlignment="Left" Margin="586,169,0,0" VerticalAlignment="Top" RenderTransformOrigin="13.156,9.463"/>
+        <TextBox x:Name="textBoxRed" HorizontalAlignment="Left" Height="17" Margin="228,135,0,0" TextWrapping="Wrap" Text="255" VerticalAlignment="Top" Width="47" TextChanged="textBox_TextChanged"/>
+        <TextBox x:Name="textBoxGreen" HorizontalAlignment="Left" Height="18" Margin="227,158,0,0" TextWrapping="Wrap" Text="255" VerticalAlignment="Top" Width="48" TextChanged="textBox_TextChanged"/>
+        <TextBox x:Name="textBoxBlue" HorizontalAlignment="Left" Height="18" Margin="227,180,0,0" TextWrapping="Wrap" Text="255" VerticalAlignment="Top" Width="47" TextChanged="textBox_TextChanged"/>
+
     </Grid>
 </Window>
