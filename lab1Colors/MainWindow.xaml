@@ -6,19 +6,45 @@
         xmlns:local="clr-namespace:lab1Colors"
         mc:Ignorable="d"
         Title="Colors" Height="497.436" Width="907.051">
+<Window.Resources>
+        <local:ToRedConverter x:Key="ToRedConverter"/>
+        <local:ToGreenConverter x:Key="ToGreenConverter"/>
+        <local:ToBlueConverter x:Key="ToBlueConverter"/>
+    </Window.Resources>
     <Grid>
-        <Slider x:Name="sliderRed" HorizontalAlignment="Left" Margin="51,135,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="255" ValueChanged="slider_ValueChanged" MouseEnter="slider_MouseEnter" MouseLeave="slider_MouseLeave"/>
-        <Slider x:Name="sliderGreen" HorizontalAlignment="Left" Margin="51,157,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="255" ValueChanged="slider_ValueChanged" MouseEnter="slider_MouseEnter" MouseLeave="slider_MouseLeave"/>
-        <Slider x:Name="sliderBlue" HorizontalAlignment="Left" Margin="51,176,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="255" ValueChanged="slider_ValueChanged" MouseEnter="slider_MouseEnter" MouseLeave="slider_MouseLeave"/>
+        <Slider x:Name="sliderRed" HorizontalAlignment="Left" Margin="51,135,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="255" ValueChanged="slider_ValueChanged" MouseEnter="slider_MouseEnter" MouseLeave="slider_MouseLeave">
+            <Slider.Background>
+                <MultiBinding Converter="{StaticResource ToRedConverter}">
+                    <Binding ElementName="sliderGreen" Path="Value"/>
+                    <Binding ElementName="sliderBlue" Path="Value"/>
+                </MultiBinding>
+            </Slider.Background>
+        </Slider>
+        <Slider x:Name="sliderGreen" HorizontalAlignment="Left" Margin="51,157,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="255" ValueChanged="slider_ValueChanged" MouseEnter="slider_MouseEnter" MouseLeave="slider_MouseLeave">
+            <Slider.Background>
+                <MultiBinding Converter="{StaticResource ToGreenConverter}">
+                    <Binding ElementName="sliderRed" Path="Value"/>
+                    <Binding ElementName="sliderBlue" Path="Value"/>
+                </MultiBinding>
+            </Slider.Background>
+        </Slider>
+        <Slider x:Name="sliderBlue" HorizontalAlignment="Left" Margin="51,176,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="255" ValueChanged="slider_ValueChanged" MouseEnter="slider_MouseEnter" MouseLeave="slider_MouseLeave">
+            <Slider.Background>
+                <MultiBinding Converter="{StaticResource ToBlueConverter}">
+                    <Binding ElementName="sliderRed" Path="Value"/>
+                    <Binding ElementName="sliderGreen" Path="Value"/>
+                </MultiBinding>
+            </Slider.Background>
+        </Slider>
         <Slider x:Name="sliderCyan" HorizontalAlignment="Left" Margin="51,369,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="1" SmallChange="0.01" LargeChange="0.01" ValueChanged="sliderCMYK_ValueChanged" MouseEnter="sliderCMY_MouseEnter" MouseLeave="sliderCMY_MouseLeave"/>
         <Slider x:Name="sliderMagenta" HorizontalAlignment="Left" Margin="51,388,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="1" SmallChange="0.01" LargeChange="0.01" ValueChanged="sliderCMYK_ValueChanged" MouseEnter="sliderCMY_MouseEnter" MouseLeave="sliderCMY_MouseLeave"/>
         <Slider x:Name="sliderYellow" HorizontalAlignment="Left" Margin="51,407,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="1" SmallChange="0.01" LargeChange="0.01" ValueChanged="sliderCMYK_ValueChanged" MouseEnter="sliderCMY_MouseEnter" MouseLeave="sliderCMY_MouseLeave"/>
         <Slider x:Name="sliderHue" HorizontalAlignment="Left" Margin="609,135,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="360" ValueChanged="sliderHSV_ValueChanged" MouseEnter="sliderHSV_MouseEnter" MouseLeave="sliderHSV_MouseLeave"/>
-        <Slider x:Name="sliderSaturation" HorizontalAlignment="Left" Margin="609,154,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="1" ValueChanged="sliderHSV_ValueChanged" MouseEnter="sliderHSV_MouseEnter" MouseLeave="sliderHSV_MouseLeave"/>
+        <Slider x:Name="sliderSaturation" HorizontalAlignment="Left" Margin="609,154,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="1" ValueChanged="sliderHSV_ValueChanged" MouseEnter="sliderHSV_MouseEnter" MouseLeave="sliderHSV_MouseLeave" Value="1"/>
         <Slider x:Name="sliderValue" HorizontalAlignment="Left" Margin="609,173,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="1" ValueChanged="sliderHSV_ValueChanged" MouseEnter="sliderHSV_MouseEnter" MouseLeave="sliderHSV_MouseLeave"/>
-        <Slider x:Name="sliderLightness" HorizontalAlignment="Left" Margin="609,369,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="100"/>
-        <Slider x:Name="sliderA" HorizontalAlignment="Left" Margin="609,388,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="100"/>
-        <Slider x:Name="sliderB" HorizontalAlignment="Left" Margin="609,407,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="100"/>
+        <Slider x:Name="sliderLightness" HorizontalAlignment="Left" Margin="609,369,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="100" MouseEnter="sliderLab_MouseEnter" MouseLeave="sliderLab_MouseLeave" ValueChanged="sliderLab_ValueChanged" Value="100"/>
+        <Slider x:Name="sliderA" HorizontalAlignment="Left" Margin="609,388,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="100" MouseEnter="sliderLab_MouseEnter" MouseLeave="sliderLab_MouseLeave" ValueChanged="sliderLab_ValueChanged"/>
+        <Slider x:Name="sliderB" HorizontalAlignment="Left" Margin="609,407,0,0" VerticalAlignment="Top" Height="14" Width="177" Maximum="100" MouseEnter="sliderLab_MouseEnter" MouseLeave="sliderLab_MouseLeave" ValueChanged="sliderLab_ValueChanged"/>
         <Label x:Name="label" Content="R" HorizontalAlignment="Left" Margin="28,131,0,0" VerticalAlignment="Top" RenderTransformOrigin="13.156,9.463"/>
         <Label x:Name="label_Copy" Content="G" HorizontalAlignment="Left" Margin="28,151,0,0" VerticalAlignment="Top" RenderTransformOrigin="13.156,9.463"/>
         <Label x:Name="label_Copy1" Content="B" HorizontalAlignment="Left" Margin="28,172,0,0" VerticalAlignment="Top" RenderTransformOrigin="13.156,9.463"/>
@@ -36,6 +62,7 @@
         <Label x:Name="label1" Content="L" HorizontalAlignment="Left" Margin="586,365,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label1_Copy" Content="a" HorizontalAlignment="Left" Margin="586,384,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.625,1.922"/>
         <Label x:Name="label1_Copy1" Content="b" HorizontalAlignment="Left" Margin="586,404,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="393,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

@@ -27,9 +27,10 @@ namespace lab1Colors
         int rgb = 0;
         int hsv = 0;
         int cmy = 0;
+        int lab = 0;
 
         private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {   
+        {
             if (rgb != 0)
             {
                 Color color = Color.FromRgb((byte)sliderRed.Value, (byte)sliderGreen.Value, (byte)sliderBlue.Value);
@@ -316,8 +317,10 @@ namespace lab1Colors
             }
         }
 
-        public double FuncLab(double t) =>  t > Math.Pow(6.0/29, 3)? Math.Pow(t, 1.0/3) : t/(108.0/841) + 4.0/29; 
-        
+        public double FuncLab(double t) =>  t > Math.Pow(6.0/29, 3)? Math.Pow(t, 1.0/3) : t/(108.0/841) + 4.0/29;
+        public double ReverseFuncLab(double t) =>  t > (6.0/29)? Math.Pow(t, 3) : (108.0/841)*(t - 4.0/29);
+
+        #region Cursor
         private void slider_MouseEnter(object sender, MouseEventArgs e)
         {
             rgb = 1;
@@ -346,6 +349,97 @@ namespace lab1Colors
         private void sliderCMY_MouseLeave(object sender, MouseEventArgs e)
         {
             cmy = 0;
+        }
+
+        private void sliderLab_MouseEnter(object sender, MouseEventArgs e)
+        {
+            lab = 1;
+        }
+
+        private void sliderLab_MouseLeave(object sender, MouseEventArgs e)
+        {
+            lab = 0;
+        }
+        #endregion
+
+        private void sliderLab_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            
+            if (lab == 1)
+            {
+                double X = 95.047*ReverseFuncLab((sliderLightness.Value + 16)/116 + sliderA.Value/500);
+                double Y = 100 * ReverseFuncLab((sliderLightness.Value + 16) / 116);
+                double Z = 108.883 * ReverseFuncLab((sliderLightness.Value + 16) / 116 - sliderB.Value / 500);
+
+                var var_X = X/100;        //X from 0 to  95.047      (Observer = 2°, Illuminant = D65)
+                var var_Y = Y/100;       //Y from 0 to 100.000
+                var var_Z = Z/100;        //Z from 0 to 108.883
+
+                var var_R = var_X*3.2406 + var_Y*-1.5372 + var_Z*-0.4986;
+                var var_G = var_X*-0.9689 + var_Y*1.8758 + var_Z*0.0415;
+                var var_B = var_X*0.0557 + var_Y*-0.2040 + var_Z*1.0570;
+
+                if (var_R > 0.0031308)
+                    var_R = 1.055*(Math.Pow(var_R,(1.0/2.4))) - 0.055;
+                else var_R = 12.92*var_R;
+                if (var_G > 0.0031308)
+                    var_G = 1.055*(Math.Pow(var_G, (1.0 / 2.4))) - 0.055;
+                else var_G = 12.92*var_G;
+                if (var_B > 0.0031308)
+                    var_B = 1.055*(Math.Pow(var_B, (1.0 / 2.4))) - 0.055;
+                else var_B = 12.92*var_B;
+
+                double R = var_R*255;
+                double G = var_G*255;
+                double B = var_B*255;
+
+                Color color = Color.FromRgb((byte)((R)), (byte)((G)), (byte)((B)));
+                this.Background = new SolidColorBrush(color);
+
+                sliderRed.Value = R;
+                sliderGreen.Value = G;
+                sliderBlue.Value = B;
+
+                if (R > 255 || G > 255 || B > 255)
+                    textBlock.Text = "ОСТОРОЖНО";
+                else
+                    textBlock.Text = "ПОРЯДОК";
+                
+                double cyan = 1 - sliderRed.Value / 255;
+                double magenta = 1 - sliderGreen.Value / 255;
+                double yellow = 1 - sliderBlue.Value / 255;
+                double[] colorsCmy = { sliderCyan.Value, sliderMagenta.Value, sliderYellow.Value };
+                sliderKey.Value = colorsCmy.Min();
+                sliderCyan.Value = cyan;
+                sliderMagenta.Value = magenta;
+                sliderYellow.Value = yellow;
+
+                double r = sliderRed.Value / 255;
+                double g = sliderGreen.Value / 255;
+                double b = sliderBlue.Value / 255;
+                double[] mas = { r, g, b };
+                double cmax = mas.Max();
+                double cmin = mas.Min();
+                double delta = cmax - cmin;
+                double hue = 0;
+
+                if (cmax == b)
+                    hue = 60 * ((r - g) / delta) + 240;
+                if (cmax == g)
+                    hue = 60 * ((b - r) / delta) + 120;
+                if (cmax == r)
+                    hue = (60 * ((g - b) / delta) + 360) % 360;
+                if (delta == 0)
+                    hue = 0;
+                double satur = 0;
+                if (Math.Abs(cmax) > 0.000001)
+                    satur = delta / cmax;
+                double value = cmax;
+
+                sliderHue.Value = hue;
+                sliderSaturation.Value = satur;
+                sliderValue.Value = value;
+            }
         }
     }
 }
