@@ -23,6 +23,7 @@ namespace lab1Colors
         public MainWindow()
         {
             InitializeComponent();
+
         }
         int rgb = 0;
         int hsv = 0;
@@ -103,9 +104,12 @@ namespace lab1Colors
                 sliderLightness.Value = 116*FuncLab(Y/100) - 16;
                 sliderA.Value = 500*(FuncLab(X/95.047) - FuncLab(Y/100));
                 sliderB.Value = 200 * (FuncLab(X / 95.047) - FuncLab(Z / 108.883));
-
+                CountSliders();
                 #endregion
             }
+            #region Writing in texbox
+            
+            #endregion
         }
 
         private void sliderCMYK_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -115,12 +119,14 @@ namespace lab1Colors
                 double[] colorsCmy = {sliderCyan.Value, sliderMagenta.Value, sliderYellow.Value};
                 sliderKey.Value = colorsCmy.Min();
                 #region Writing in rgb and hsv sliders
-                double red = 255*(1 - sliderCyan.Value)*(1 - sliderKey.Value);
-                double green = 255*(1 - sliderMagenta.Value)*(1 - sliderKey.Value);
-                double blue = 255*(1 - sliderYellow.Value)*(1 - sliderKey.Value);
+                double red = 255*(1 - sliderCyan.Value);
+                double green = 255*(1 - sliderMagenta.Value);
+                double blue = 255*(1 - sliderYellow.Value);
                 sliderRed.Value = red;
                 sliderGreen.Value = green;
                 sliderBlue.Value = blue;
+                Color color = Color.FromRgb((byte)red, (byte)green, (byte)blue);
+                this.Background = new SolidColorBrush(color);
 
                 double r = sliderRed.Value / 255;
                 double g = sliderGreen.Value / 255;
@@ -137,9 +143,11 @@ namespace lab1Colors
                     hue = 60 * ((b - r) / delta) + 120;
                 if (cmax == b)
                     hue = 60 * ((r - g) / delta) + 240;
-                
+                if (delta == 0)
+                    hue = 0;
+
                 double satur = 0;
-                if (Math.Abs(cmax) > 0.000001)
+                if (cmax > 0)
                     satur = delta / cmax;
                 double value = cmax;
 
@@ -174,13 +182,15 @@ namespace lab1Colors
                 sliderA.Value = 500 * (FuncLab(X / 95.047) - FuncLab(Y / 100));
                 sliderB.Value = 200 * (FuncLab(X / 95.047) - FuncLab(Z / 108.883));
                 #endregion
-                Color color = Color.FromRgb((byte) red, (byte) green, (byte) blue);
+                
                 #region Writing in texbox
                 textBoxRed.Text = red.ToString();
                 textBoxGreen.Text = green.ToString();
                 textBoxBlue.Text = blue.ToString();
                 #endregion
-                this.Background = new SolidColorBrush(color);
+                
+                CountSliders();
+
             }
         }
 
@@ -282,12 +292,14 @@ namespace lab1Colors
                 textBoxBlue.Text = ((blueS + m) * 255).ToString();
                 #endregion
                 this.Background = new SolidColorBrush(color);
+                CountSliders();
+
             }
         }
 
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (rgb + cmy + hsv == 0)
+            if (rgb + cmy + hsv + lab == 0)
             {
                 int red, green, blue;
                 try
@@ -364,7 +376,6 @@ namespace lab1Colors
 
         private void sliderLab_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            
             if (lab == 1)
             {
                 double X = 95.047*ReverseFuncLab((sliderLightness.Value + 16)/116 + sliderA.Value/500);
@@ -375,9 +386,9 @@ namespace lab1Colors
                 var var_Y = Y/100;       //Y from 0 to 100.000
                 var var_Z = Z/100;        //Z from 0 to 108.883
 
-                var var_R = var_X*3.2406 + var_Y*-1.5372 + var_Z*-0.4986;
-                var var_G = var_X*-0.9689 + var_Y*1.8758 + var_Z*0.0415;
-                var var_B = var_X*0.0557 + var_Y*-0.2040 + var_Z*1.0570;
+                var var_R = var_X*3.2406 + -var_Y*1.5372 + -var_Z*0.4986;
+                var var_G = -var_X*0.9689 + var_Y*1.8758 + var_Z*0.0415;
+                var var_B = var_X*0.0557 + -var_Y*0.2040 + var_Z*1.0570;
 
                 if (var_R > 0.0031308)
                     var_R = 1.055*(Math.Pow(var_R,(1.0/2.4))) - 0.055;
@@ -393,6 +404,29 @@ namespace lab1Colors
                 double G = var_G*255;
                 double B = var_B*255;
 
+                if (R > 255 || G > 255 || B > 255)
+                {
+                    if (R > 255)
+                        R = 255;
+                    if (G > 255)
+                        G = 255;
+                    else
+                        B = 255;
+                    textBlock.Text = "ОСТОРОЖНО";
+                }
+                else if (R < 0 || G < 0 || B < 0)
+                {
+                    if (R < 0)
+                        R = 0;
+                    if (G < 0)
+                        G = 0;
+                    else
+                        B = 0;
+                    textBlock.Text = "ОСТОРОЖНО";
+                }
+                else
+                    textBlock.Text = "ПОРЯДОК";
+
                 Color color = Color.FromRgb((byte)((R)), (byte)((G)), (byte)((B)));
                 this.Background = new SolidColorBrush(color);
 
@@ -400,11 +434,6 @@ namespace lab1Colors
                 sliderGreen.Value = G;
                 sliderBlue.Value = B;
 
-                if (R > 255 || G > 255 || B > 255)
-                    textBlock.Text = "ОСТОРОЖНО";
-                else
-                    textBlock.Text = "ПОРЯДОК";
-                
                 double cyan = 1 - sliderRed.Value / 255;
                 double magenta = 1 - sliderGreen.Value / 255;
                 double yellow = 1 - sliderBlue.Value / 255;
@@ -439,7 +468,25 @@ namespace lab1Colors
                 sliderHue.Value = hue;
                 sliderSaturation.Value = satur;
                 sliderValue.Value = value;
+                CountSliders();
+
             }
+        }
+
+        private void CountSliders()
+        {
+            textBoxC.Text = sliderCyan.Value.ToString();
+            textBoxM.Text = sliderMagenta.Value.ToString();
+            textBoxY.Text = sliderYellow.Value.ToString();
+            textBoxH.Text = sliderHue.Value.ToString();
+            textBoxS.Text = sliderSaturation.Value.ToString();
+            textBoxV.Text = sliderValue.Value.ToString();
+            textBoxL.Text = sliderLightness.Value.ToString();
+            textBoxA.Text = sliderA.Value.ToString();
+            textBoxB.Text = sliderB.Value.ToString();
+            textBoxRed.Text = sliderRed.Value.ToString();
+            textBoxGreen.Text = sliderGreen.Value.ToString();
+            textBoxBlue.Text = sliderBlue.Value.ToString();
         }
     }
 }

@@ -16,6 +16,14 @@ namespace lab1Colors
             if (writer == null) throw new ArgumentNullException(nameof(writer));
             writer = "НИКИТА НЕ ПОНИМАЕТ((((";
         }
+
+        public static void ЯнеСЧИТАЮчтоЭТОнужно(this int i)
+        {
+            
+        }
+
+        public static void ПРИВЕТ_НИКИТЕ_И_ВСЕЙ_ЕГО_СЕМЬЕ_ОТ_МЕНЯ__ПАВЛА_РОМАША_САМОГО_ЛУЧШЕГО_ЧЕЛОВЕКА_В_МИРЕ(this double i)
+            {}
     }
     public class ToRedConverter : IMultiValueConverter
     {
