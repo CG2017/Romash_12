@@ -41,6 +41,7 @@
             this.ofdSourceFile = new System.Windows.Forms.OpenFileDialog();
             this.btRevert = new System.Windows.Forms.Button();
             this.lbRadiusValue = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbSourceImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProcessedImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbRadius)).BeginInit();
@@ -52,10 +53,10 @@
             // 
             this.pbSourceImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbSourceImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbSourceImage.Location = new System.Drawing.Point(17, 13);
-            this.pbSourceImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbSourceImage.Location = new System.Drawing.Point(824, 199);
+            this.pbSourceImage.Margin = new System.Windows.Forms.Padding(4);
             this.pbSourceImage.Name = "pbSourceImage";
-            this.pbSourceImage.Size = new System.Drawing.Size(411, 260);
+            this.pbSourceImage.Size = new System.Drawing.Size(579, 402);
             this.pbSourceImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbSourceImage.TabIndex = 0;
             this.pbSourceImage.TabStop = false;
@@ -65,10 +66,10 @@
             // 
             this.pbProcessedImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbProcessedImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbProcessedImage.Location = new System.Drawing.Point(455, 13);
-            this.pbProcessedImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbProcessedImage.Location = new System.Drawing.Point(13, 13);
+            this.pbProcessedImage.Margin = new System.Windows.Forms.Padding(4);
             this.pbProcessedImage.Name = "pbProcessedImage";
-            this.pbProcessedImage.Size = new System.Drawing.Size(422, 260);
+            this.pbProcessedImage.Size = new System.Drawing.Size(791, 616);
             this.pbProcessedImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbProcessedImage.TabIndex = 0;
             this.pbProcessedImage.TabStop = false;
@@ -86,7 +87,7 @@
             // tbRadius
             // 
             this.tbRadius.Location = new System.Drawing.Point(947, 15);
-            this.tbRadius.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbRadius.Margin = new System.Windows.Forms.Padding(4);
             this.tbRadius.Maximum = 100;
             this.tbRadius.Name = "tbRadius";
             this.tbRadius.Size = new System.Drawing.Size(393, 56);
@@ -118,7 +119,7 @@
             // 
             this.pbOriginalColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbOriginalColor.Location = new System.Drawing.Point(985, 64);
-            this.pbOriginalColor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbOriginalColor.Margin = new System.Windows.Forms.Padding(4);
             this.pbOriginalColor.Name = "pbOriginalColor";
             this.pbOriginalColor.Size = new System.Drawing.Size(68, 61);
             this.pbOriginalColor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -130,7 +131,7 @@
             // 
             this.pbDestinationColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbDestinationColor.Location = new System.Drawing.Point(1242, 64);
-            this.pbDestinationColor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbDestinationColor.Margin = new System.Windows.Forms.Padding(4);
             this.pbDestinationColor.Name = "pbDestinationColor";
             this.pbDestinationColor.Size = new System.Drawing.Size(61, 61);
             this.pbDestinationColor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -141,7 +142,7 @@
             // btReplace
             // 
             this.btReplace.Location = new System.Drawing.Point(888, 133);
-            this.btReplace.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btReplace.Margin = new System.Windows.Forms.Padding(4);
             this.btReplace.Name = "btReplace";
             this.btReplace.Size = new System.Drawing.Size(132, 33);
             this.btReplace.TabIndex = 6;
@@ -156,7 +157,7 @@
             // btRevert
             // 
             this.btRevert.Location = new System.Drawing.Point(1123, 133);
-            this.btRevert.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btRevert.Margin = new System.Windows.Forms.Padding(4);
             this.btRevert.Name = "btRevert";
             this.btRevert.Size = new System.Drawing.Size(132, 33);
             this.btRevert.TabIndex = 6;
@@ -173,11 +174,22 @@
             this.lbRadiusValue.Size = new System.Drawing.Size(0, 17);
             this.lbRadiusValue.TabIndex = 1;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1328, 155);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Load";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ImageProcesser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1400, 304);
+            this.ClientSize = new System.Drawing.Size(1440, 697);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btRevert);
             this.Controls.Add(this.btReplace);
             this.Controls.Add(this.pbDestinationColor);
@@ -189,7 +201,7 @@
             this.Controls.Add(this.lbRadius);
             this.Controls.Add(this.pbProcessedImage);
             this.Controls.Add(this.pbSourceImage);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ImageProcesser";
             this.Text = "Image Processer";
             ((System.ComponentModel.ISupportInitialize)(this.pbSourceImage)).EndInit();
@@ -216,6 +228,7 @@
         public System.Windows.Forms.PictureBox pbSourceImage;
         private System.Windows.Forms.Button btRevert;
         private System.Windows.Forms.Label lbRadiusValue;
+        private System.Windows.Forms.Button button1;
     }
 }
 

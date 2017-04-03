@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab1Colors", "lab1Colors\la
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab2Converting", "CG_Lab2\CG_Lab2\lab2Converting.csproj", "{5F669FA9-4DD7-4AE2-A946-8CE047B7321F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab3", "lab3\lab3\lab3.csproj", "{B55D6A4E-E07A-498F-9ECA-80A22AF24488}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5F669FA9-4DD7-4AE2-A946-8CE047B7321F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F669FA9-4DD7-4AE2-A946-8CE047B7321F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F669FA9-4DD7-4AE2-A946-8CE047B7321F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B55D6A4E-E07A-498F-9ECA-80A22AF24488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B55D6A4E-E07A-498F-9ECA-80A22AF24488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B55D6A4E-E07A-498F-9ECA-80A22AF24488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B55D6A4E-E07A-498F-9ECA-80A22AF24488}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -71,10 +71,7 @@ namespace CG_Lab2
         {
             if (pbSourceImage.Image == null)
             {
-                openImage();
-                initLabImage();
-                ShowImage(pbSourceImage, sourceImage);
-                ShowImage(pbProcessedImage, sourceImage);
+                
             }
             else
             {
@@ -119,6 +116,14 @@ namespace CG_Lab2
         private void tbRadius_ValueChanged(object sender, EventArgs e)
         {
             lbRadiusValue.Text = tbRadius.Value.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            openImage();
+            initLabImage();
+            ShowImage(pbSourceImage, sourceImage);
+            ShowImage(pbProcessedImage, sourceImage);
         }
     }
 }
