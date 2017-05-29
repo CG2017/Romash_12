@@ -1,0 +1,25 @@
+﻿<Window x:Class="Lab_4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_4"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="513.861" Width="888.337">
+    <Grid>
+        <Button x:Name="btnFolder" Content="Folder" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="56,26,0,0" Click="btnFolder_Click"/>
+        <ListView x:Name="listFileInfo" HorizontalAlignment="Left" Height="198" Margin="56,50,0,0" VerticalAlignment="Top" Width="790">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="150" Header="File Name" DisplayMemberBinding="{Binding FileName}"></GridViewColumn>
+                    <GridViewColumn Width="150" Header="Pixel size" DisplayMemberBinding="{Binding PixelSize}"></GridViewColumn>
+                    <GridViewColumn Width="150" Header="Dimension" DisplayMemberBinding="{Binding Dimension}"></GridViewColumn>
+                    <GridViewColumn Width="150" Header="Compression type" DisplayMemberBinding="{Binding CmprssnType}"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <TextBox x:Name="textBoxAdditionalInfo" HorizontalAlignment="Left" Height="184" Margin="56,261,0,0" TextWrapping="Wrap" Text="Additional Info" VerticalAlignment="Top" Width="790"/>
+
+    </Grid>
+</Window>
